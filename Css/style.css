@@ -1,0 +1,76 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: #f5f5f5 !important;
+}
+
+.navbar{
+  background-color: white;
+  box-shadow: 0px 0px 3px 0px grey;
+}
+
+
+.prod-imagen img{
+  max-width:150px;
+}
+
+.pedidos{
+  background-color: white;
+  padding: 10px 5px;
+  border-radius:3px;
+}
+
+.prod{
+  background-color: white;
+  margin-bottom:10px;
+  box-shadow: 0px 0px 3px 0px rgb(216, 216, 216);
+}
+
+.form-login {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-login .checkbox {
+  font-weight: 400;
+}
+
+.form-login .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-login input[type="usuario"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-login input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+@media (max-width: 600px){
+  .prod-imagen img{
+    max-width:100px;
+  }
+
+  .prod{
+    font-size: 12px;
+  }
+
+  .pedidos{
+    font-size: 12px;
+  }
+
+  .btn{
+    font-size: 12px !important;
+  }
+}
