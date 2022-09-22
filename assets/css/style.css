@@ -29,11 +29,28 @@ body {
   box-shadow: 0px 0px 3px 0px rgb(216, 216, 216);
 }
 
+.main-login{
+  height:60vh;
+}
+
+.panel{
+  background-color: white;
+  padding:30px;
+  width: 100%;
+  max-width: 600px !important;
+  border-radius:5px;
+  box-shadow:0 0 2px 2px #f3f3f3;
+  border: 1px solid #e7e7e7;
+}
+
 .form-login {
   width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: auto;
+  max-width: 500px;
+  background:#fff;
+  padding:20px;
+  border-radius:5px;
+  box-shadow:0 0 2px 2px #f3f3f3;
+  border: 1px solid #e7e7e7;
 }
 
 .form-login .checkbox {
@@ -44,20 +61,18 @@ body {
   z-index: 2;
 }
 
-.form-login input[type="usuario"] {
-  margin-bottom: -1px;
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
 .form-login input[type="password"] {
   margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 
 
 @media (max-width: 600px){
+  .form-login,.panel{
+    background-color: #f5f5f5 !important;
+    box-shadow:none;
+    border:none;
+  } 
+
   .prod-imagen img{
     max-width:100px;
   }
