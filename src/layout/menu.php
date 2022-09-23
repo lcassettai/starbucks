@@ -15,9 +15,6 @@
                     <a class="nav-link" href="pedidos.php">Mis Pedidos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="productos.php">Productos</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="logout.php">Cerrar Sesion</a>
                     </li>
             </ul>
