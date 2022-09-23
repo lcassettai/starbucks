@@ -40,7 +40,7 @@ try{
 
 include 'layout/header.php';
 include 'layout/menu.php';
-?> 
+?>
 
 <div class="container jumbotron">
     <div class="row">
@@ -58,14 +58,14 @@ include 'layout/menu.php';
                             <th scope="col"></th>
                         </tr>
                     </thead>
-                    <tbody>              
-                        <?php if(!empty($pedidos)): ?>                
+                    <tbody>
+                        <?php if(!empty($pedidos)): ?>
                         <?php foreach($pedidos as $pedido): ?>
-                            <tr>  
+                        <tr>
                             <th scope="row"><?= $pedido['id_pedido']; ?></th>
                             <td><?=  date("d/m/Y", strtotime($pedido['fecha'])); ?></td>
                             <td class=>Cantidad</td>
-                            <td><span class="badge text-bg-success"><?= strtoupper($pedido['estado']); ?></span></td>
+                            <td><span class="badge text-bg-<?php if($pedido['estado'] == "ENTREGADO"){echo "success";}else{echo "warning";};?>"><?= strtoupper($pedido['estado']); ?></span></td>
                             <td><button type="button" class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#pedido_<?= $pedido['id_pedido'] ?>">
                                     Ver
@@ -73,9 +73,9 @@ include 'layout/menu.php';
                         </tr>
                         <?php endforeach; ?>
                         <?php else: ?>
-                                <tr>
-                                    <td colspan="5">No existen pedidos</td>
-                                </tr>
+                        <tr>
+                            <td colspan="5">No existen pedidos</td>
+                        </tr>
                         <?php endif; ?>
                     </tbody>
                 </table>
@@ -87,7 +87,8 @@ include 'layout/menu.php';
 
 <?php foreach($pedidos as $pedido): ?>
 <!-- Modal -->
-<div class="modal fade" id="pedido_<?= $pedido['id_pedido']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="pedido_<?= $pedido['id_pedido']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-dark text-bg-primary">
@@ -98,10 +99,11 @@ include 'layout/menu.php';
                 <table class="table">
                     <thead>
                         <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Producto</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">Precio</th>
+                            <th scope="col">#</th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">P. unitario</th>
+                            <th scope="col">Importe</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -109,18 +111,19 @@ include 'layout/menu.php';
                         <?php foreach($pedido['pedido_detalle'] as $i => $detalle): ?>
                         <tr>
                             <th scope="row"><?= $i+1 ;?></th>
-                            <td><?= $detalle['producto'] ?></td>
-                            <td><?= $detalle['cantidad'] ?></td>
-                            <td>$<?= $detalle['precio'] ?></td>
+                            <td><?= $detalle['producto']; ?></td>
+                            <td><?= $detalle['cantidad']; ?></td>
+                            <td>$<?= $detalle['precio']; ?></td>
+                            <td>$<?= $detalle['precio'] * $detalle['cantidad']; ?></td>
                         </tr>
-                        <?php $total += $detalle['precio'];?>
+                        <?php $total +=  $detalle['precio'] * $detalle['cantidad'];?>
                         <?php endforeach; ?>
                         <tr>
-                        <td colspan="3" class="label-total text-end">Total</td>
-                        <td>$<?= $total;?></td>
+                            <td colspan="4" class="label-total text-end">Total</td>
+                            <td>$<?= $total;?></td>
                         </tr>
                     </tbody>
-                    </table>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
