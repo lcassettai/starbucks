@@ -11,16 +11,19 @@ try{
     $DbConection = new DbConection();
     $pdo = $DbConection->dbConnect();
 
+    //Obtenemos todos los pedidos
     $obtenerPedidos = $pdo->prepare(
         "SELECT * 
         FROM pedidos as p INNER JOIN estados_pedidos as ep ON p.id_estado = ep.id_estado 
-        WHERE id_cliente = :id_cliente");
+        WHERE id_cliente = :id_cliente 
+        ORDER BY fecha desc");
     $obtenerPedidos->bindParam(':id_cliente',$_SESSION['usuario']['id_cliente']);
     $obtenerPedidos->execute();
     
     if($obtenerPedidos->rowCount() > 0){
         $pedidos = $obtenerPedidos->fetchAll(PDO::FETCH_ASSOC);    
         
+        //Obtenemos el detalle de los pedidos
         foreach($pedidos as $i =>  $p){
             $obtenerPedidos = $pdo->prepare(
                 "SELECT cantidad,producto,pd.precio
@@ -43,8 +46,19 @@ include 'layout/menu.php';
 ?>
 
 <div class="container jumbotron">
+
     <div class="row">
         <div class="mt-3">
+            <?php if(isset($_GET['pedidoGenerado'])):?>
+            <div class="alert alert-success" role="alert">
+                Se genero el pedido con exito!
+            </div>
+            <?php endif; ?>
+            <?php if(isset($_GET['errorPedido'])):?>
+            <div class="alert alert-danger" role="alert">
+                Algo salio mal y no se pudo generar tu pedido!
+            </div>
+            <?php endif; ?>
             <h1 class="text-center">MIS PEDIDOS</h1>
             <a href="nuevoPedido.php" class="btn btn-primary mb-3">Nuevo Pedido</a>
             <div class="pedidos">
@@ -53,7 +67,6 @@ include 'layout/menu.php';
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Fecha</th>
-                            <th scope="col">Cantidad de productos</th>
                             <th scope="col">Estado</th>
                             <th scope="col"></th>
                         </tr>
@@ -63,12 +76,13 @@ include 'layout/menu.php';
                         <?php foreach($pedidos as $pedido): ?>
                         <tr>
                             <th scope="row"><?= $pedido['id_pedido']; ?></th>
-                            <td><?=  date("d/m/Y", strtotime($pedido['fecha'])); ?></td>
-                            <td class=>Cantidad</td>
-                            <td><span class="badge text-bg-<?php if($pedido['estado'] == "ENTREGADO"){echo "success";}else{echo "warning";};?>"><?= strtoupper($pedido['estado']); ?></span></td>
-                            <td><button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            <td><?=  date("d/m/Y H:i:s", strtotime($pedido['fecha'])); ?></td>
+                            <td><span
+                                    class="badge text-bg-<?php if($pedido['estado'] == "ENTREGADO"){echo "success";}else{echo "warning";};?>"><?= strtoupper($pedido['estado']); ?></span>
+                            </td>
+                            <td><button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#pedido_<?= $pedido['id_pedido'] ?>">
-                                    Ver
+                                    Ver Detalle
                                 </button></td>
                         </tr>
                         <?php endforeach; ?>

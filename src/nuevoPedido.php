@@ -78,6 +78,11 @@ include 'layout/menu.php';
 <div class="container mt-3">
     <div class="row">
         <h1 class="text-center">NUEVO PEDIDO</h1>
+        <?php if(isset($_GET['pedidoVacio'])):?>
+            <div class="alert alert-danger" role="alert">
+                Debes agregar al menos 1 producto a tu pedido!
+            </div>
+            <?php endif; ?>
         <div class="col mt-3">
             <h2 class="text-center">Listado de productos</h2>
             <div class="panel">
@@ -117,12 +122,14 @@ include 'layout/menu.php';
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Producto</th>
-                            <th scope="col">Precio</th>
-                            <th scope="col">Cantidad</th>
+                            <th scope="col">P. Unitario</th>
+                            <th scope="col">Cant.</th>
+                            <th scope="col">Importe</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
                     <tbody>
+                        <?php $total = 0;?>
                         <?php foreach($detalle as $i => $p):?>
                         <form action="" method="post">
                             <input type="hidden" value="<?= $p['id_producto']?>" name="id_producto">
@@ -131,13 +138,19 @@ include 'layout/menu.php';
                                 <td><?=$p['producto'];?></td>
                                 <td>$<?=$p['precio'];?></td>
                                 <td><?=$p['cantidad']; ?></td>
+                                <td>$<?=$p['precio'] * $p['cantidad']; ?></td>
                                 <td><button type="submit" name="eliminar" class="btn btn-sm btn-danger">x</button></td>
                             </tr>
                         </form>
+                        <?php $total += $p['cantidad'] * $p['precio'];?>
                         <?php endforeach; ?>                        
+                        <tr>
+                            <td colspan="4" class="label-total text-end"><strong>Total</strong</td>
+                            <td>$<?= $total;?></td>
+                        </tr>
                     </tbody>
                 </table>
-                <a style="width: 100%;" href="productos.php" class="btn btn-primary">FINALIZAR PEDIDO</a>
+                <a style="width: 100%;" href="finalizarPedido.php" class="btn btn-primary">FINALIZAR PEDIDO</a>
             </div>
         </div>
     </div>
