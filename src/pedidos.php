@@ -46,7 +46,7 @@ include 'layout/menu.php';
     <div class="row">
         <div class="mt-3">
             <h1 class="text-center">MIS PEDIDOS</h1>
-            <a href="productos.php" class="btn btn-primary mb-3">Nuevo Pedido</a>
+            <a href="nuevoPedido.php" class="btn btn-primary mb-3">Nuevo Pedido</a>
             <div class="pedidos">
                 <table class="table table-striped text-center">
                     <thead>
