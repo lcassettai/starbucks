@@ -66,7 +66,7 @@ if(isset($_POST['eliminar'])){
             break;
         }
     }
-
+    
     $detalle = $_SESSION['pedido'];
 }
 
@@ -122,9 +122,8 @@ include 'layout/menu.php';
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Producto</th>
-                            <th scope="col">P. Unitario</th>
-                            <th scope="col">Cant.</th>
-                            <th scope="col">Importe</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Precio</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -136,16 +135,15 @@ include 'layout/menu.php';
                             <tr>
                                 <th scope="row"><?= $i+1;?> </th>
                                 <td><?=$p['producto'];?></td>
-                                <td>$<?=$p['precio'];?></td>
                                 <td><?=$p['cantidad']; ?></td>
-                                <td>$<?=$p['precio'] * $p['cantidad']; ?></td>
+                                <td>$<?=$p['precio'];?></td>
                                 <td><button type="submit" name="eliminar" class="btn btn-sm btn-danger">x</button></td>
                             </tr>
                         </form>
                         <?php $total += $p['cantidad'] * $p['precio'];?>
                         <?php endforeach; ?>                        
                         <tr>
-                            <td colspan="4" class="label-total text-end"><strong>Total</strong</td>
+                            <td colspan="3" class="label-total text-end"><strong>Total</strong</td>
                             <td>$<?= $total;?></td>
                         </tr>
                     </tbody>
