@@ -40,7 +40,7 @@ body {
   max-width: 600px !important;
   border-radius:5px;
   box-shadow:0 0 2px 2px #f3f3f3;
-  border: 1px solid #e7e7e7;
+  border: 1px solid #e7e7e7; 
 }
 
 .panel-large{
@@ -75,7 +75,10 @@ body {
 
 
 @media (max-width: 600px){
-
+  .panel{
+    overflow-x: scroll;
+    font-size: 12px;
+  }
 
   .prod-imagen img{
     max-width:100px;
@@ -89,7 +92,7 @@ body {
     font-size: 12px;
   }
 
-  .btn{
+  .btn:not(.btn-home){
     font-size: 12px !important;
   }
 }

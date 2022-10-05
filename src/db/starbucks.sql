@@ -136,6 +136,7 @@ CREATE TABLE `productos` (
   `producto` varchar(250) NOT NULL,
   `precio` decimal(10,0) NOT NULL,
   `descripcion` text NOT NULL,
+  `stock` int(11) NOT NULL,
   `imagen` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -143,9 +144,50 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `producto`, `precio`, `descripcion`, `imagen`) VALUES
-(1, 'Café con leche', '200', 'Cafe con leche descremada', ''),
-(2, 'te', '400', 'té', '');
+INSERT INTO `productos` (`id_producto`, `producto`, `precio`, `descripcion`,`stock`,`imagen`) VALUES
+(1,'Skinny Vainilla Latte',382,'Skinny Vainilla Latte',38,''),
+(2,'Cappuccino',347,'Cappuccino',25,''),
+(3,'Flat White',338,'Flat White',16,''),
+(4,'Americano',320,'Americano',7,''),
+(5,'Latte Macchiato',388,'Latte Macchiato',24,''),
+(6,'Mocha Blanco',316,'Mocha Blanco',40,''),
+(7,'Café del día con leche',452,'Café del día con leche',35,''),
+(8,'Avellana Shaken Espresso con Avena Helado',462,'Avellana Shaken Espresso con Avena Helado',28,''),
+(9,'Skinny Caramel Macchiato Helado',406,'Skinny Caramel Macchiato Helado',15,''),
+(10,'Cappuccino Helado',451,'Cappuccino Helado',12,''),
+(11,'Skinny Vainilla Latte Helado',429,'Skinny Vainilla Latte Helado',8,''),
+(12,'Cold Brew Cold Foam',303,'Cold Brew Cold Foam',23,''),
+(13,'Americano Helado',438,'Americano Helado',4,''),
+(14,'Mocha Blanco Helado',302,'Mocha Blanco Helado',13,''),
+(15,'Café del día con leche Helado',456,'Café del día con leche Helado',9,''),
+(16,'Café Frappuccino',287,'Café Frappuccino',20,''),
+(17,'Chai Frappuccino',466,'Chai Frappuccino',2,''),
+(18,'Mint Citrus',382,'Mint Citrus',11,''),
+(19,'Chai',266,'Cha"i"',32,''),
+(20,'Youthberry',414,'Youthberry',17,''),
+(21,'Earl Grey',264,'Earl Grey',35,''),
+(22,'Shaken Lemonade Hibiscus',369,'Shaken Lemonade Hibiscus',33,''),
+(23,'Shaken Lemonade Green Tea',467,'Shaken Lemonade Green Tea',36,''),
+(24,'Mango Dragonfruit Limonada',266,'Mango Dragonfruit Limonada',21,''),
+(25,'Jugo de Manzana',301,'Jugo de Manzana',33,''),
+(26,'Chocolate Caliente',315,'Chocolate Caliente',33,''),
+(27,'Croissant Relleno con Crema de Avellanas',359,'Croissant Relleno con Crema de Avellanas',31,''),
+(28,'Trenzado de Ricota y Citricos',270,'Trenzado de Ricota y Citricos',34,''),
+(29,'CheeseAvocado Scon',318,'CheeseAvocado Scon',18,''),
+(30,'Muffin de Arandanos',301,'Muffin de Arandanos',11,''),
+(31,'Banana Loaf Cake',352,'Banana Loaf Cake',19,''),
+(32,'Cheesecake Frutos Rojos',449,'Cheesecake Frutos Rojos',20,''),
+(33,'Sandwich con Jamon y Queso en Pan Artesanal',420,'Sandwich con Jamon y Queso en Pan Artesanal',11,''),
+(34,'Porridge Avena Chocolate y Mani',338,'Porridge Avena Chocolate y Mani',3,''),
+(35,'Moneda de Chocolate',316,'Moneda de Chocolate',25,''),
+(36,'Biscotti con Castañas',292,'Biscotti con Castañas',22,''),
+(37,'Nicaragua Single Origin',439,'Nicaragua Single Origin',15,''),
+(38,'Guatemala Casi Cielo',284,'Guatemala Casi Cielo',32,''),
+(39,'Café Sumatra',435,'Café Sumatra',30,''),
+(40,'Te Hibiscus',461,'Te Hibiscus',39,''),
+(41,'Te Chai',309,'Te Chai',25,''),
+(42,'Te Earl Grey',250,'Te Earl Grey',5,''),
+(43,'Te Mint Citrus',402,'Te Mint Citrus',19,'');
 
 --
 -- Índices para tablas volcadas

@@ -28,6 +28,9 @@ try{
     $id_pedido = $pdo->lastInsertId();
 
     foreach($pedido_detalle as $p){
+        $sql = "UPDATE productos SET stock = (stock  - ". $p['cantidad'].") where id_producto = ".  $p['id_producto'] ;
+        $pdo->prepare($sql)->execute();
+
         $sql = "INSERT INTO pedido_detalle(id_pedido,cantidad,precio,id_producto) VALUES(?,?,?,?)";
         $pdo->prepare($sql)->execute([$id_pedido,$p['cantidad'],$p['precio'],$p['id_producto']]);
     }
